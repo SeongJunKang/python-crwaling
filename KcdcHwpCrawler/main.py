@@ -33,7 +33,6 @@ list = open('list.txt')
 url_list = list.readlines()
 for url in url_list:
 	driver.get(url)
-	a_tag_list = WebDriverWait(driver, 2).until(selector_find)
 	try:
 		a_tag_list = WebDriverWait(driver, 2).until(selector_find)
 		for a in a_tag_list:
