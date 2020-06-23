@@ -4,7 +4,7 @@ import time
 import os
 
 def selector_find(driver):
-	element = driver.find_elements_by_css_selector('.boardForm td.L a')
+	element = driver.find_elements_by_css_selector('.add_file_item a')
 	if element:
 		return element
 	else:
@@ -30,16 +30,17 @@ chromedriver = 'chromedriver/chromedriver.exe'
 driver = webdriver.Chrome(chromedriver,chrome_options=options)
 
 list = open('list.txt')
-numbers = list.readlines()
-for number in numbers:
-	url = "http://www.cdc.go.kr/npt/biz/npp/portal/nppIssueIcdView.do?issueIcdSn={0}".format(number.rstrip("\n"))
+url_list = list.readlines()
+for url in url_list:
 	driver.get(url)
+	a_tag_list = WebDriverWait(driver, 2).until(selector_find)
 	try:
-		pdfList = WebDriverWait(driver, 2).until(selector_find)
-		for pdf in pdfList:
-			pdf.click()
-			time.sleep(1.5)
+		a_tag_list = WebDriverWait(driver, 2).until(selector_find)
+		for a in a_tag_list:
+			if ".hwp" in a.text:
+				a.click()
+				time.sleep(1.5)
 	except:
-		print('ERROR {0}'.format(number))
+		print('ERROR {0}'.format(url))
 
 driver.quit()

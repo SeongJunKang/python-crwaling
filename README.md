@@ -5,3 +5,5 @@
 #### 크롤링을 진행했던 사이트 목록
 
 - [대한민국 구석구석](https://korean.visitkorea.or.kr/)
+- [질병관리본부(감염병 포털)- 감염병 보도자료 PDF 파일](http://www.cdc.go.kr/npt/biz/npp/portal/nppIssueIcdMain.do)
+- [질병관리본부 - 보도자료](https://www.cdc.go.kr/board/board.es?mid=a20501000000&bid=0015)
