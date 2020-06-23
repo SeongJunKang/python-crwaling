@@ -7,7 +7,7 @@ driver = webdriver.Chrome(chromedriver)
 schoolList = open('list.txt')
 school = schoolList.readlines()
 for url in school:
-	url = "{0}&listCo=1500".format(url)
+	url = "{0}&listCo=1500".format(url.rstrip("\n"))
 	driver.get(url)
 	linkList = driver.find_elements_by_css_selector('td.ta_l>a')
 	filename = driver.find_elements_by_css_selector('.area_header>header>h1>a>img')[0]
@@ -41,14 +41,16 @@ for url in school:
 	for page in pageList:
 		try:
 			downloadDriver.get(page)
+			time.sleep(1.2)
 			fileList = downloadDriver.find_elements_by_css_selector('.fileimg>li')
 			for file in fileList:
 				aTagList = file.find_elements_by_css_selector('a')
 				for aTag in aTagList:
 					if ".hwp" in aTag.text:
 						aTag.click()
-						time.sleep(1.2)
+						time.sleep(1.5)
 		except:
+			print('{0} error '.format(page))
 			continue
 	downloadDriver.quit()
 driver.quit()
